@@ -15,6 +15,9 @@
     </div>
 
     {% csrf_token %}
+    {% bootstrap_javascript jquery='full' %}
+    {{ form.media }}
+    
     <button type="submit" class="btn btn-primary">送信</button>
     <button id="add" type="button" class="btn btn-primary">ファイルの追加</button>
 </form>
@@ -26,9 +29,10 @@
 $(function(){
     var totalManageElement = $('input#id_file_set-TOTAL_FORMS');
     var currentFileCount = parseInt(totalManageElement.val());
+    
     $('button#add').on('click', function(){
         var nameElement = $('<input>', {
-            type: 'name',
+            type: 'text',  // 'name' ではなく 'text' を使用
             name: 'file_set-' + currentFileCount + '-name',
             id: 'id_file_set-' + currentFileCount + '-name',
         });
